@@ -211,9 +211,9 @@ const Analytics: React.FC = () => {
                 <Bar 
                   dataKey="value" 
                   fill="#6366f1" 
-                  radius={[0, 10, 10, 0] as [number, number, number, number]} 
+                  radius={10 as any} 
                   barSize={32}
-                  background={{ fill: '#f8fafc', radius: [0, 10, 10, 0] as [number, number, number, number] }}
+                  background={{ fill: '#f8fafc', radius: 10 as any }}
                 >
                     {chartData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />

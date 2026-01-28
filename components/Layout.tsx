@@ -56,14 +56,14 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
       {/* Sidebar */}
       <aside className="w-80 bg-white border-r border-slate-100 hidden md:flex flex-col shadow-[4px_0_24px_-12px_rgba(0,0,0,0.05)] z-10">
         <div className="p-8 pb-6 flex flex-col items-center">
-          <Link to="/" className="flex flex-col items-center gap-6 text-center">
+          <Link to="/" className="flex flex-col items-center gap-6 text-center w-full">
             {logo ? (
-              <div className="w-40 h-40 bg-white rounded-[2rem] shadow-2xl border border-slate-50 p-4 flex items-center justify-center animate-in fade-in zoom-in duration-700">
+              <div className="w-44 h-44 bg-white rounded-3xl shadow-xl border border-slate-100 p-4 flex items-center justify-center animate-in fade-in zoom-in duration-700">
                 <img 
                   src={logo} 
                   alt="Institution Logo" 
                   className="w-full h-full object-contain" 
-                  referrerPolicy="no-referrer" 
+                  loading="eager"
                 />
               </div>
             ) : (
@@ -71,7 +71,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                 {currentUser.role === UserRole.SUPER_ADMIN ? 'S' : 'I'}
               </div>
             )}
-            <div className="flex flex-col overflow-hidden max-w-full">
+            <div className="flex flex-col overflow-hidden max-w-full mt-4">
               <span className="text-2xl font-black text-slate-800 tracking-tight leading-tight truncate px-2">
                 {institution ? institution.name : 'InsightFlow'}
               </span>

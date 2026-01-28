@@ -88,12 +88,13 @@ const SubmitForm: React.FC = () => {
          </div>
          <div className="relative z-10 text-white max-w-5xl flex flex-col items-center">
             {logo && (
-              <div className="mb-12 bg-white p-12 rounded-[5rem] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] border-4 border-white/20 animate-in fade-in zoom-in duration-1000">
+              <div className="mb-12 bg-white p-12 rounded-[5rem] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] border-4 border-white animate-in fade-in zoom-in duration-1000">
                 <img 
                   src={logo} 
                   alt="Institutional Logo" 
                   className="h-64 md:h-80 object-contain drop-shadow-xl" 
                   referrerPolicy="no-referrer" 
+                  crossOrigin="anonymous"
                 />
               </div>
             )}
