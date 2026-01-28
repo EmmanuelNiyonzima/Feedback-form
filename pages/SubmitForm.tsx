@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAppStore } from '../store/AppContext';
@@ -99,7 +100,7 @@ const SubmitForm: React.FC = () => {
            </svg>
          </div>
          <div className="relative z-10 text-white max-w-2xl">
-            {logo && <img src={logo} alt="Logo" className="h-16 mx-auto mb-6 object-contain bg-white/20 p-2 rounded-xl backdrop-blur-sm" />}
+            {logo && <img src={logo} alt="Logo" className="h-16 mx-auto mb-6 object-contain bg-white/20 p-2 rounded-xl backdrop-blur-sm" referrerPolicy="no-referrer" />}
             <h1 className="text-3xl md:text-5xl font-black tracking-tight">{form.title}</h1>
          </div>
       </div>

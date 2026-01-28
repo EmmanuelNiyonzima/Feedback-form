@@ -49,7 +49,7 @@ const MOCK_FORM: FormTemplate = {
 const DEFAULT_INST: Institution = {
   id: 'inst-1',
   name: 'Kepler College',
-  logoUrl: 'https://drive.google.com/uc?export=view&id=1YatB7x2bDKH52WtRgQiHKN1ftr2ggF0m',
+  logoUrl: 'https://drive.google.com/uc?export=download&id=1YatB7x2bDKH52WtRgQiHKN1ftr2ggF0m',
   primaryColor: '#0f766e',
   secondaryColor: '#f0fdfa',
   createdAt: new Date().toISOString()

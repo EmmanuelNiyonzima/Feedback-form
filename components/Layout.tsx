@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppStore } from '../store/AppContext';
@@ -61,7 +62,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         <div className="p-8 pb-6">
           <Link to="/" className="flex items-center gap-3 mb-2">
             {logo ? (
-              <img src={logo} alt="Logo" className="w-10 h-10 object-contain rounded-lg bg-slate-50 p-1" />
+              <img src={logo} alt="Logo" className="w-10 h-10 object-contain rounded-lg bg-slate-50 p-1" referrerPolicy="no-referrer" />
             ) : (
               <div className="w-10 h-10 rounded-xl flex items-center justify-center shadow-lg text-white font-bold text-xl" style={{ background: themeColor }}>
                 {currentUser.role === UserRole.SUPER_ADMIN ? 'S' : 'I'}
