@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { FormTemplate, FormResponse, AnalysisRecord, FieldType, User, Institution, Department, UserRole } from '../types';
 
@@ -33,22 +34,22 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 const MOCK_FORM: FormTemplate = {
   id: 'form-1',
   institutionId: 'inst-1',
-  title: 'Guest Experience Survey',
-  description: 'Tell us about your stay at Grand Azure.',
-  industry: 'Hospitality',
+  title: 'Student Experience Survey',
+  description: 'Tell us about your learning experience at Kepler College.',
+  industry: 'Education',
   createdAt: new Date().toISOString(),
   fields: [
-    { id: 'cleanliness', label: 'Room Cleanliness', type: FieldType.RATING, required: true },
-    { id: 'staff', label: 'Staff Friendliness', type: FieldType.RATING, required: true },
-    { id: 'checkin', label: 'Check-in Speed', type: FieldType.RATING, required: true },
+    { id: 'cleanliness', label: 'Campus Facilities', type: FieldType.RATING, required: true },
+    { id: 'staff', label: 'Instructor Quality', type: FieldType.RATING, required: true },
+    { id: 'checkin', label: 'Support Services', type: FieldType.RATING, required: true },
     { id: 'comments', label: 'Comments', type: FieldType.TEXT, required: false }
   ]
 };
 
 const DEFAULT_INST: Institution = {
   id: 'inst-1',
-  name: 'Grand Azure Hotels',
-  logoUrl: 'https://cdn-icons-png.flaticon.com/512/201/201623.png',
+  name: 'Kepler College',
+  logoUrl: 'https://drive.google.com/uc?export=view&id=1YatB7x2bDKH52WtRgQiHKN1ftr2ggF0m',
   primaryColor: '#0f766e',
   secondaryColor: '#f0fdfa',
   createdAt: new Date().toISOString()
