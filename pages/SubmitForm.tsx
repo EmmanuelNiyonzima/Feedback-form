@@ -80,29 +80,30 @@ const SubmitForm: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans pb-20">
-      <div className="min-h-[600px] w-full relative overflow-hidden flex flex-col items-center justify-center text-center px-6" style={{ backgroundColor: brandColor }}>
+      <div className="min-h-[700px] w-full relative overflow-hidden flex flex-col items-center justify-center text-center px-6" style={{ backgroundColor: brandColor }}>
          <div className="absolute inset-0 opacity-10">
            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
              <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
            </svg>
          </div>
-         <div className="relative z-10 text-white max-w-4xl flex flex-col items-center">
+         <div className="relative z-10 text-white max-w-5xl flex flex-col items-center">
             {logo && (
-              <div className="mb-12 bg-white p-10 rounded-[60px] shadow-2xl border border-white/20 animate-in fade-in zoom-in duration-700">
+              <div className="mb-12 bg-white p-12 rounded-[5rem] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] border-4 border-white/20 animate-in fade-in zoom-in duration-1000">
                 <img 
                   src={logo} 
-                  alt="Logo" 
-                  className="h-48 md:h-72 object-contain" 
+                  alt="Institutional Logo" 
+                  className="h-64 md:h-80 object-contain drop-shadow-xl" 
                   referrerPolicy="no-referrer" 
                 />
               </div>
             )}
-            <h1 className="text-5xl md:text-8xl font-black tracking-tighter drop-shadow-2xl">{form.title}</h1>
+            <h1 className="text-6xl md:text-9xl font-black tracking-tighter drop-shadow-2xl mb-4">{form.title}</h1>
+            {institution && <p className="text-xl md:text-2xl font-bold opacity-80 uppercase tracking-widest">{institution.name}</p>}
          </div>
       </div>
 
-      <div className="max-w-2xl mx-auto -mt-24 px-4 relative z-20">
-        <div className="bg-white rounded-[50px] shadow-2xl shadow-slate-200 overflow-hidden border border-white">
+      <div className="max-w-2xl mx-auto -mt-32 px-4 relative z-20">
+        <div className="bg-white rounded-[60px] shadow-2xl shadow-slate-200 overflow-hidden border border-white">
           <div className="p-10 md:p-16 border-b border-slate-50">
             <p className="text-2xl md:text-3xl text-slate-600 leading-relaxed text-center font-medium italic">"{form.description}"</p>
           </div>

@@ -54,35 +54,35 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   return (
     <div className="flex h-screen bg-[#F8FAFC] overflow-hidden font-sans text-slate-900">
       {/* Sidebar */}
-      <aside className="w-72 bg-white border-r border-slate-100 hidden md:flex flex-col shadow-[4px_0_24px_-12px_rgba(0,0,0,0.05)] z-10">
+      <aside className="w-80 bg-white border-r border-slate-100 hidden md:flex flex-col shadow-[4px_0_24px_-12px_rgba(0,0,0,0.05)] z-10">
         <div className="p-8 pb-6 flex flex-col items-center">
-          <Link to="/" className="flex flex-col items-center gap-4 text-center">
+          <Link to="/" className="flex flex-col items-center gap-6 text-center">
             {logo ? (
-              <div className="w-32 h-32 bg-white rounded-2xl shadow-xl border border-slate-100 p-3 flex items-center justify-center">
+              <div className="w-40 h-40 bg-white rounded-[2rem] shadow-2xl border border-slate-50 p-4 flex items-center justify-center animate-in fade-in zoom-in duration-700">
                 <img 
                   src={logo} 
-                  alt="Logo" 
+                  alt="Institution Logo" 
                   className="w-full h-full object-contain" 
                   referrerPolicy="no-referrer" 
                 />
               </div>
             ) : (
-              <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg text-white font-bold text-3xl shrink-0" style={{ background: themeColor }}>
+              <div className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg text-white font-bold text-4xl shrink-0" style={{ background: themeColor }}>
                 {currentUser.role === UserRole.SUPER_ADMIN ? 'S' : 'I'}
               </div>
             )}
-            <div className="flex flex-col overflow-hidden">
-              <span className="text-xl font-black text-slate-800 tracking-tight leading-tight truncate px-2">
+            <div className="flex flex-col overflow-hidden max-w-full">
+              <span className="text-2xl font-black text-slate-800 tracking-tight leading-tight truncate px-2">
                 {institution ? institution.name : 'InsightFlow'}
               </span>
-              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">
-                {currentUser.role === UserRole.SUPER_ADMIN ? 'Super Admin' : 'Dashboard'}
+              <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-2 border-t border-slate-50 pt-2 w-full">
+                {currentUser.role === UserRole.SUPER_ADMIN ? 'Super Admin' : 'Dashboard Control'}
               </span>
             </div>
           </Link>
         </div>
         
-        <nav className="flex-1 px-4 space-y-2 overflow-y-auto custom-scrollbar">
+        <nav className="flex-1 px-4 space-y-2 overflow-y-auto custom-scrollbar mt-4">
           <div className="px-4 py-2 text-xs font-bold text-slate-400 uppercase tracking-wider">Main Menu</div>
           
           {currentUser.role === UserRole.SUPER_ADMIN ? (
