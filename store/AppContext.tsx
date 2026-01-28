@@ -49,7 +49,8 @@ const MOCK_FORM: FormTemplate = {
 const DEFAULT_INST: Institution = {
   id: 'inst-1',
   name: 'Kepler College',
-  logoUrl: 'https://drive.google.com/uc?export=download&id=1YatB7x2bDKH52WtRgQiHKN1ftr2ggF0m',
+  // Using the Google Usercontent direct link which is far more reliable for <img> tags
+  logoUrl: 'https://lh3.googleusercontent.com/d/1YatB7x2bDKH52WtRgQiHKN1ftr2ggF0m',
   primaryColor: '#0f766e',
   secondaryColor: '#f0fdfa',
   createdAt: new Date().toISOString()
@@ -67,7 +68,6 @@ const getSaved = <T,>(key: string, defaultValue: T): T => {
 };
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  // Use functional initialization to avoid "flash of missing data"
   const [currentUser, setCurrentUser] = useState<User | null>(() => getSaved('if_user', null));
   const [institutions, setInstitutions] = useState<Institution[]>(() => getSaved('if_institutions', [DEFAULT_INST]));
   const [departments, setDepartments] = useState<Department[]>(() => getSaved('if_depts', []));
@@ -75,7 +75,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const [responses, setResponses] = useState<FormResponse[]>(() => getSaved('if_responses', []));
   const [analyses, setAnalyses] = useState<AnalysisRecord[]>(() => getSaved('if_analyses', []));
 
-  // Handle Cross-Tab Syncing
   useEffect(() => {
     const handleStorageChange = (e: StorageEvent) => {
       if (e.key === 'if_responses' && e.newValue) setResponses(JSON.parse(e.newValue));
@@ -87,7 +86,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
     return () => window.removeEventListener('storage', handleStorageChange);
   }, []);
 
-  // Sync to LocalStorage whenever state changes
   useEffect(() => { localStorage.setItem('if_institutions', JSON.stringify(institutions)); }, [institutions]);
   useEffect(() => { localStorage.setItem('if_depts', JSON.stringify(departments)); }, [departments]);
   useEffect(() => { localStorage.setItem('if_forms', JSON.stringify(rawForms)); }, [rawForms]);
@@ -127,7 +125,6 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => 
   const addResponse = (response: FormResponse) => {
     setResponses(prev => {
       const next = [response, ...prev];
-      // Manual trigger for current tab persistence
       localStorage.setItem('if_responses', JSON.stringify(next));
       return next;
     });
