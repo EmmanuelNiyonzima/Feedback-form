@@ -86,32 +86,32 @@ const SubmitForm: React.FC = () => {
              <path d="M0 100 C 20 0 50 0 100 100 Z" fill="white" />
            </svg>
          </div>
-         <div className="relative z-10 text-white max-w-3xl flex flex-col items-center">
+         <div className="relative z-10 text-white max-w-4xl flex flex-col items-center">
             {logo && (
-              <div className="mb-12 bg-white p-8 rounded-[50px] shadow-2xl border border-white/20">
+              <div className="mb-12 bg-white p-10 rounded-[60px] shadow-2xl border border-white/20 animate-in fade-in zoom-in duration-700">
                 <img 
                   src={logo} 
                   alt="Logo" 
-                  className="h-48 md:h-64 object-contain" 
+                  className="h-48 md:h-72 object-contain" 
                   referrerPolicy="no-referrer" 
                 />
               </div>
             )}
-            <h1 className="text-5xl md:text-7xl font-black tracking-tight drop-shadow-lg">{form.title}</h1>
+            <h1 className="text-5xl md:text-8xl font-black tracking-tighter drop-shadow-2xl">{form.title}</h1>
          </div>
       </div>
 
-      <div className="max-w-2xl mx-auto -mt-20 px-4 relative z-20">
-        <div className="bg-white rounded-[40px] shadow-2xl shadow-slate-200 overflow-hidden border border-white">
-          <div className="p-10 md:p-14 border-b border-slate-50">
-            <p className="text-2xl text-slate-600 leading-relaxed text-center font-medium italic">"{form.description}"</p>
+      <div className="max-w-2xl mx-auto -mt-24 px-4 relative z-20">
+        <div className="bg-white rounded-[50px] shadow-2xl shadow-slate-200 overflow-hidden border border-white">
+          <div className="p-10 md:p-16 border-b border-slate-50">
+            <p className="text-2xl md:text-3xl text-slate-600 leading-relaxed text-center font-medium italic">"{form.description}"</p>
           </div>
 
-          <form onSubmit={handleSubmit} className="p-10 md:p-14 space-y-16">
+          <form onSubmit={handleSubmit} className="p-10 md:p-16 space-y-20">
             {form.fields.map((field, idx) => (
               <div key={field.id} className="animate-in fade-in slide-in-from-bottom-4 duration-500" style={{ animationDelay: `${idx * 100}ms` }}>
-                <label className="block text-2xl font-black text-slate-800 mb-8">
-                  <span className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-slate-100 text-slate-400 text-xl font-black mr-4">{idx + 1}</span>
+                <label className="block text-3xl font-black text-slate-800 mb-10">
+                  <span className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-slate-100 text-slate-400 text-2xl font-black mr-6">{idx + 1}</span>
                   {field.label}
                   {field.required && <span className="text-red-500 ml-1">*</span>}
                 </label>
@@ -119,41 +119,41 @@ const SubmitForm: React.FC = () => {
                 {field.type === FieldType.TEXT && (
                   <textarea
                     required={field.required}
-                    className="w-full p-8 text-xl bg-slate-50 border-2 border-slate-100 rounded-[30px] focus:bg-white outline-none transition-all resize-none min-h-[220px] focus:border-indigo-500 shadow-inner"
-                    placeholder="Tell us more..."
+                    className="w-full p-10 text-2xl bg-slate-50 border-4 border-slate-100 rounded-[40px] focus:bg-white outline-none transition-all resize-none min-h-[250px] focus:border-indigo-500 shadow-inner"
+                    placeholder="Tell us more about your experience..."
                     value={answers[field.id] || ''}
                     onChange={(e) => handleChange(field.id, e.target.value)}
                   />
                 )}
 
                 {field.type === FieldType.RATING && (
-                  <div className="flex justify-between max-w-md mx-auto">
+                  <div className="flex justify-between max-w-lg mx-auto">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <button
                         key={star}
                         type="button"
                         onClick={() => handleChange(field.id, star)}
-                        className={`w-16 h-16 rounded-[24px] transition-all flex items-center justify-center ${
+                        className={`w-20 h-20 rounded-[30px] transition-all flex items-center justify-center ${
                           answers[field.id] >= star 
                             ? 'text-white shadow-2xl scale-110' 
                             : 'bg-slate-50 text-slate-300 hover:bg-slate-100'
                         }`}
                         style={answers[field.id] >= star ? { backgroundColor: brandColor } : {}}
                       >
-                        <Star fill={answers[field.id] >= star ? "currentColor" : "none"} size={32} />
+                        <Star fill={answers[field.id] >= star ? "currentColor" : "none"} size={40} />
                       </button>
                     ))}
                   </div>
                 )}
 
                 {field.type === FieldType.YESNO && (
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-2 gap-10">
                     {['Yes', 'No'].map(opt => (
                       <button
                         key={opt}
                         type="button"
                         onClick={() => handleChange(field.id, opt)}
-                        className={`py-8 rounded-[24px] border-4 font-black text-2xl transition-all ${
+                        className={`py-10 rounded-[35px] border-4 font-black text-3xl transition-all ${
                           answers[field.id] === opt 
                             ? 'bg-slate-50 shadow-inner scale-[0.98]' 
                             : 'border-slate-50 bg-slate-50 text-slate-400 hover:border-slate-200'
@@ -167,23 +167,23 @@ const SubmitForm: React.FC = () => {
                 )}
 
                  {field.type === FieldType.CHOICE && (
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     {field.options?.map(opt => (
                       <button
                         key={opt}
                         type="button"
                         onClick={() => handleChange(field.id, opt)}
-                        className={`w-full text-left p-8 rounded-[24px] border-4 transition-all flex items-center justify-between ${
+                        className={`w-full text-left p-10 rounded-[35px] border-4 transition-all flex items-center justify-between ${
                           answers[field.id] === opt 
                             ? 'bg-slate-50 shadow-inner' 
                             : 'border-slate-50 bg-slate-50 hover:bg-white'
                         }`}
                         style={answers[field.id] === opt ? { borderColor: brandColor } : {}}
                       >
-                        <span className={`text-xl ${answers[field.id] === opt ? 'font-black' : 'text-slate-600'}`}
+                        <span className={`text-2xl ${answers[field.id] === opt ? 'font-black' : 'text-slate-600'}`}
                            style={answers[field.id] === opt ? { color: brandColor } : {}}
                         >{opt}</span>
-                        {answers[field.id] === opt && <CheckCircle2 size={30} style={{ color: brandColor }} />}
+                        {answers[field.id] === opt && <CheckCircle2 size={40} style={{ color: brandColor }} />}
                       </button>
                     ))}
                   </div>
@@ -191,13 +191,13 @@ const SubmitForm: React.FC = () => {
               </div>
             ))}
 
-            <div className="pt-16">
+            <div className="pt-20">
               <button
                 type="submit"
-                className="w-full text-white text-3xl font-black py-10 rounded-[40px] shadow-2xl hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-4"
+                className="w-full text-white text-4xl font-black py-12 rounded-[50px] shadow-2xl hover:brightness-110 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-6"
                 style={{ backgroundColor: brandColor }}
               >
-                Submit Feedback <Send size={32} />
+                Submit Feedback <Send size={40} />
               </button>
             </div>
           </form>

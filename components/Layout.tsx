@@ -6,7 +6,6 @@ import { UserRole } from '../types';
 import { LayoutDashboard, PlusCircle, FileText, BarChart2, Settings as SettingsIcon, Menu, LogOut, ChevronRight, Building2 } from 'lucide-react';
 
 const SidebarItem = ({ to, icon: Icon, label, active, themeColor }: any) => {
-  // Use inline style for dynamic active color
   const activeStyle = active ? { backgroundColor: themeColor, color: '#fff', boxShadow: `0 10px 15px -3px ${themeColor}40` } : {};
   
   return (
@@ -35,7 +34,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
   const { currentUser, getCurrentInstitution, logout } = useAppStore();
   
   const institution = getCurrentInstitution();
-  const themeColor = institution?.primaryColor || '#4f46e5'; // Default indigo
+  const themeColor = institution?.primaryColor || '#4f46e5';
   const logo = institution?.logoUrl;
 
   const handleLogout = () => {
@@ -43,14 +42,11 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     navigate('/login');
   };
 
-  // Don't show layout for public pages or login
   if (path.startsWith('/submit/') || path === '/login') {
     return <div className="min-h-screen bg-slate-50 font-sans text-slate-900">{children}</div>;
   }
 
-  // Redirect to login if not authenticated
   if (!currentUser) {
-    // This effect should ideally be in a protected route wrapper, but here for simplicity
     setTimeout(() => navigate('/login'), 0);
     return null;
   }
@@ -59,22 +55,24 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
     <div className="flex h-screen bg-[#F8FAFC] overflow-hidden font-sans text-slate-900">
       {/* Sidebar */}
       <aside className="w-72 bg-white border-r border-slate-100 hidden md:flex flex-col shadow-[4px_0_24px_-12px_rgba(0,0,0,0.05)] z-10">
-        <div className="p-8 pb-6">
-          <Link to="/" className={`flex flex-col items-center gap-4 mb-2 ${!logo ? 'flex-row items-center' : ''}`}>
+        <div className="p-8 pb-6 flex flex-col items-center">
+          <Link to="/" className="flex flex-col items-center gap-4 text-center">
             {logo ? (
-              <img 
-                src={logo} 
-                alt="Logo" 
-                className="w-32 h-32 object-contain rounded-2xl bg-white shadow-xl border border-slate-100 p-2" 
-                referrerPolicy="no-referrer" 
-              />
+              <div className="w-32 h-32 bg-white rounded-2xl shadow-xl border border-slate-100 p-3 flex items-center justify-center">
+                <img 
+                  src={logo} 
+                  alt="Logo" 
+                  className="w-full h-full object-contain" 
+                  referrerPolicy="no-referrer" 
+                />
+              </div>
             ) : (
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center shadow-lg text-white font-bold text-2xl shrink-0" style={{ background: themeColor }}>
+              <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg text-white font-bold text-3xl shrink-0" style={{ background: themeColor }}>
                 {currentUser.role === UserRole.SUPER_ADMIN ? 'S' : 'I'}
               </div>
             )}
-            <div className={`flex flex-col overflow-hidden text-center ${!logo ? 'text-left' : ''}`}>
-              <span className="text-xl font-black text-slate-800 tracking-tight leading-tight w-full">
+            <div className="flex flex-col overflow-hidden">
+              <span className="text-xl font-black text-slate-800 tracking-tight leading-tight truncate px-2">
                 {institution ? institution.name : 'InsightFlow'}
               </span>
               <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1">
