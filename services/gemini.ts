@@ -4,11 +4,8 @@ import { FormTemplate, FieldType, AIAnalysisResult } from '../types';
 
 // Initialize the Google GenAI client with the API key from environment variables.
 const getClient = () => {
-  const apiKey = process.env.API_KEY;
-  if (!apiKey) {
-    throw new Error("API Key is missing. Please ensure you have a .env or .env.local file in your project root with API_KEY=... and have restarted the server.");
-  }
-  return new GoogleGenAI({ apiKey });
+  // Use process.env.API_KEY string directly as per guidelines.
+  return new GoogleGenAI({ apiKey: process.env.API_KEY });
 };
 
 // Define the schema for AI-generated feedback forms.
@@ -80,6 +77,7 @@ export const generateFormWithAI = async (prompt: string): Promise<Partial<FormTe
       }
     });
 
+    // Access the .text property directly, do not call as a method.
     const text = response.text;
     if (!text) throw new Error("No response from AI");
     
@@ -123,6 +121,7 @@ export const analyzeFeedbackWithAI = async (
       }
     });
 
+    // Access the .text property directly, do not call as a method.
     const text = response.text;
     if (!text) throw new Error("No response from AI");
     
