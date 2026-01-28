@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { useAppStore } from '../store/AppContext';
 import { useParams, Link, useNavigate } from 'react-router-dom';
@@ -71,11 +72,9 @@ const Analytics: React.FC = () => {
     };
   });
 
-  // Accurate link generation for HashRouter
   const getShareUrl = () => {
     const origin = window.location.origin;
     const pathname = window.location.pathname;
-    // Handle cases where pathname might already have a trailing slash
     const cleanPath = pathname.endsWith('/') ? pathname : pathname + '/';
     return `${origin}${pathname}#/submit/${form.id}`;
   };
@@ -90,7 +89,6 @@ const Analytics: React.FC = () => {
 
   return (
     <div className="space-y-8 pb-12">
-      {/* Header Card */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
         <div>
           <div className="flex items-center gap-3 mb-2">
@@ -120,36 +118,30 @@ const Analytics: React.FC = () => {
         </div>
       </div>
 
-       {/* QR Code Modal */}
        {showQR && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-300">
           <div className="bg-white rounded-[40px] shadow-2xl max-w-md w-full p-10 relative overflow-hidden">
              <button onClick={() => setShowQR(false)} className="absolute top-6 right-6 p-2 text-slate-400 hover:text-slate-600 bg-slate-100 rounded-full transition-colors"><X size={24} /></button>
-             
              <div className="text-center">
                 <div className="w-20 h-20 bg-indigo-50 text-indigo-600 rounded-3xl flex items-center justify-center mx-auto mb-6 rotate-3 shadow-lg shadow-indigo-50">
                   <QrCode size={40} />
                 </div>
                 <h3 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">Public Link</h3>
                 <p className="text-slate-500 mb-8 font-medium">Copy this link or scan the code to collect feedback.</p>
-                
                 <div className="bg-white p-6 rounded-3xl border-4 border-slate-50 inline-block mb-8 shadow-inner">
                    <img src={qrUrl} alt="Form QR Code" className="w-56 h-56" />
                 </div>
-
                 <div className="flex items-center gap-2 bg-slate-50 p-4 rounded-2xl border-2 border-slate-100 mb-2">
                    <p className="text-sm text-slate-500 truncate flex-1 font-mono font-medium">{shareLink}</p>
                    <button onClick={copyToClipboard} className="text-indigo-600 hover:bg-indigo-100 p-2 rounded-xl transition-all">
                      <Copy size={20} />
                    </button>
                 </div>
-                <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest mt-4 italic">Note: Link works best when hosted on a live server.</p>
              </div>
           </div>
         </div>
       )}
 
-      {/* Main Stats Grid */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col justify-center relative overflow-hidden group">
           <p className="text-slate-400 text-xs font-black uppercase tracking-widest mb-2 z-10">Total Responses</p>
@@ -196,7 +188,6 @@ const Analytics: React.FC = () => {
         )}
       </div>
 
-      {/* Data Visualization */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         <div className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm min-h-[450px]">
           <h3 className="font-black text-slate-800 mb-8 text-xl tracking-tight">Core Performance Metrics</h3>
@@ -220,9 +211,9 @@ const Analytics: React.FC = () => {
                 <Bar 
                   dataKey="value" 
                   fill="#6366f1" 
-                  radius={[0, 10, 10, 0]} 
+                  radius={[0, 10, 10, 0] as [number, number, number, number]} 
                   barSize={32}
-                  background={{ fill: '#f8fafc', radius: [0, 10, 10, 0] }}
+                  background={{ fill: '#f8fafc', radius: [0, 10, 10, 0] as [number, number, number, number] }}
                 >
                     {chartData.map((entry, index) => (
                       <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -238,7 +229,6 @@ const Analytics: React.FC = () => {
           )}
         </div>
 
-        {/* AI Recommendations */}
         <div className="bg-white rounded-3xl border border-slate-100 shadow-sm min-h-[450px] flex flex-col overflow-hidden">
           <div className="p-8 border-b border-slate-50 flex items-center justify-between bg-slate-50/30">
             <h3 className="font-black text-slate-800 flex items-center gap-3 text-xl tracking-tight">
@@ -247,7 +237,6 @@ const Analytics: React.FC = () => {
             </h3>
             {existingAnalysis && <span className="text-[10px] bg-white border border-slate-100 px-3 py-1 rounded-full text-slate-400 font-bold uppercase tracking-widest shadow-sm">Updated {new Date(existingAnalysis.generatedAt).toLocaleTimeString()}</span>}
           </div>
-
           <div className="p-6 flex-1 overflow-y-auto max-h-[350px] custom-scrollbar">
             {!existingAnalysis ? (
                <div className="h-full flex flex-col items-center justify-center text-center p-8 opacity-60">
@@ -255,7 +244,7 @@ const Analytics: React.FC = () => {
                      <Sparkles size={40} />
                   </div>
                   <h4 className="text-slate-900 font-black text-xl mb-2">Analyze Responses</h4>
-                  <p className="text-slate-500 font-medium">Click the generate button above to get tailored institutional recommendations.</p>
+                  <p className="text-slate-500 font-medium">Click generate to get AI recommendations.</p>
                </div>
             ) : (
               <div className="space-y-4">
