@@ -63,7 +63,6 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
                   src={logo} 
                   alt="Institution Logo" 
                   className="w-full h-full object-contain" 
-                  loading="eager"
                 />
               </div>
             ) : (

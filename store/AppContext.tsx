@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { FormTemplate, FormResponse, AnalysisRecord, FieldType, User, Institution, Department, UserRole } from '../types';
 
@@ -49,7 +48,7 @@ const MOCK_FORM: FormTemplate = {
 const DEFAULT_INST: Institution = {
   id: 'inst-1',
   name: 'Kepler College',
-  // Using the most robust direct link format for Google Drive hosted images
+  // Using direct image content link format for high reliability and compatibility
   logoUrl: 'https://lh3.googleusercontent.com/d/1YatB7x2bDKH52WtRgQiHKN1ftr2ggF0m',
   primaryColor: '#0f766e',
   secondaryColor: '#f0fdfa',

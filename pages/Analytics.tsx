@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useAppStore } from '../store/AppContext';
 import { useParams, Link, useNavigate } from 'react-router-dom';
@@ -106,7 +105,7 @@ const Analytics: React.FC = () => {
             className="px-6 py-3 bg-white border border-slate-200 rounded-2xl text-slate-700 font-bold hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center gap-2 shadow-sm"
           >
             <Share2 size={20} className="text-indigo-500" /> Share Link
-          </button>
+           </button>
           <button 
             onClick={handleRunAnalysis}
             disabled={loading || responses.length === 0}

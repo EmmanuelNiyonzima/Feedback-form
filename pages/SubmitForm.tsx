@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useAppStore } from '../store/AppContext';
@@ -93,8 +92,6 @@ const SubmitForm: React.FC = () => {
                   src={logo} 
                   alt="Institutional Logo" 
                   className="h-64 md:h-80 object-contain drop-shadow-xl" 
-                  referrerPolicy="no-referrer" 
-                  crossOrigin="anonymous"
                 />
               </div>
             )}
